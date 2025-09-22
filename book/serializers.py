@@ -25,7 +25,7 @@ class PublisherSerializer(serializers.ModelSerializer):
 class EditionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Edition
-        fields = ['book_id','format','price','discount_percent','file','sample_file',
+        fields = ['book','format','price','discount_percent','file','sample_file',
                   'duration_seconds','filesize_bytes','is_published','published_at']
 
 
