@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from book.models import (Category, Author, Publisher, Book, Edition, Review,
                      WishlistItem, LibraryItem)
@@ -24,7 +25,7 @@ class PublisherSerializer(serializers.ModelSerializer):
 class EditionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Edition
-        fields = ['format','price','discount_percent','file','sample_file',
+        fields = ['book_id','format','price','discount_percent','file','sample_file',
                   'duration_seconds','filesize_bytes','is_published','published_at']
 
 
@@ -40,10 +41,11 @@ class BookSerializer(serializers.ModelSerializer):
 
 
 class ReviewSerializer(serializers.ModelSerializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    # user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
 
     class Meta:
         model = Review
+        # user is temporarily not read-only because we have not implemented login and sign-up yet.
         fields = ['user','book','rating','body','created_at','is_approved']
         read_only_fields = ['created_at','is_approved']
 

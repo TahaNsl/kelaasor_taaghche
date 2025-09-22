@@ -52,7 +52,7 @@ class Book(models.Model):
     page_count = models.PositiveIntegerField(null=True, blank=True)
     published_date = models.DateField(null=True, blank=True)
 
-    avg_rating = models.FloatField(validators=[MinValueValidator(1.0), MaxValueValidator(5.0)])
+    avg_rating = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(5.0)], default=0.0)
     rating_count = models.PositiveIntegerField(default=0)
 
     is_free = models.BooleanField(default=False)
