@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import filters
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django_filters.rest_framework import DjangoFilterBackend
@@ -34,6 +35,12 @@ class BookListCreateView(ListCreateAPIView):
 class BookRUDView(RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
+
+
+
+def book_list_html(request):
+    books = Book.objects.all()
+    return render(request, "book/book_list.html", {"books": books})
 
 
 class EditionListCreateView(ListCreateAPIView):

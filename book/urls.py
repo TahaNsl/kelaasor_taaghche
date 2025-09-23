@@ -6,11 +6,12 @@ from book.views import (BookListCreateView, BookRUDView,
                         LibraryItemListCreateView, LibraryItemRUDView,
                         WishlistItemListCreateView, WishlistItemRUDView,
                         AuthorListCreateView, AuthorRUDView,
-                        PublisherListCreateView, PublisherRUDView)
+                        PublisherListCreateView, PublisherRUDView, book_list_html)
 
 urlpatterns = [
     path('', BookListCreateView.as_view(), name='book-list-create'),
     path('<int:pk>/', BookRUDView.as_view(), name='book-rud'),
+    path("html/", book_list_html, name="book-list-html"),
 
     path('authors/', AuthorListCreateView.as_view(), name='author-list-create'),
     path('authors/<int:pk>/', AuthorRUDView.as_view(), name='author-rud'),
